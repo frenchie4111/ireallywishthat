@@ -1,0 +1,60 @@
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="jquery.inputfit.js"></script>
+	<style>
+		body {
+			font-family: 'Open Sans', sans-serif;
+			text-align: center;
+		}
+		h1 {
+			font-size: 60px;
+			padding: 0px;
+			margin: 0px;
+		}
+		#this {
+			font-size: 60px;
+			height: 80;
+			width: 800px;
+		}
+		#instruction {
+			color: #AAA;
+		}
+	</style>
+	<script>
+		var default_options = [
+			'magic talking devices',
+			'watches with screens',
+			'toilet trained cats',
+			'shoes with toes'
+		]
+		$( document ).ready( function() {
+			$( '#this' ).inputfit();
+
+			var option = default_options[Math.floor(Math.random()*default_options.length)];
+			$( '#this' ).attr( 'placeholder', option );
+
+			$( '#instruction' ).hide();
+
+			$( '#this' ).on( 'input', function() {
+				if( $( this ).val().length > 0 ) {
+					$( '#instruction' ).slideDown();
+				} else {
+					$( '#instruction' ).hide();
+				}
+			} );
+
+			$("#this").keyup( function( event ) {
+				if( event.keyCode == 13 ) {
+					window.open( 'https://www.google.com/search?btnG=1&pws=0&gws_rd=ssl&q=' + $( this ).val() );
+				}
+			} );
+		} );
+	</script>
+</head>
+<body>
+	<h1>I really wish that <input id="this" type="text" placeholder="dogs with wings"></input> existed</h1>
+	<h1 id="instruction">Press Return</h1>
+</body>
+</html>
